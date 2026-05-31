@@ -19,3 +19,6 @@ my-rec-journey/
 - [x] 02 Autograd（手写梯度下降）
 - [ ] 03 nn.Module（工程化写法）
 - [ ] 04 用 PyTorch 实现矩阵分解（MF）—— 第一个推荐模型
+
+## 学习日志
+- 2026-05-31：搞定 git 全流程，能 push 到工蜂
