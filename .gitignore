@@ -1,0 +1,39 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+
+# ===== 虚拟环境 =====
+venv/
+.venv/
+env/
+
+# ===== 数据 & 模型权重（通常太大，不进 git）=====
+data/
+*.csv
+*.tsv
+*.parquet
+*.pt
+*.pth
+*.h5
+*.ckpt
+*.bin
+
+# ===== 日志 / 输出 =====
+logs/
+runs/
+output/
+*.log
+
+# ===== IDE / 系统 =====
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
