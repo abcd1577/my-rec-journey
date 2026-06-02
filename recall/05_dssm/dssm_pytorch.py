@@ -288,7 +288,7 @@ class DSSM(nn.Module):
         return: loss (标量)
         """
         # ↓↓↓↓↓ 你的代码 ↓↓↓↓↓
-        B = users.size(0) 
+        B = len(users)
         loss = None
         user_emb = self.user_tower(users)
         item_emb = self.item_tower(items)
