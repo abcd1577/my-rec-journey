@@ -246,13 +246,14 @@ print(f"序列构建完成，历史长度={HISTORY_LEN}")
 # ↑↑↑↑↑ 你的代码 ↑↑↑↑↑
 
 # ── 1.6 采样 & 特征字典 ──
-if len(merged_sorted) > SUBSAMPLE_SIZE:
-    merged_sorted = merged_sorted.sample(n=SUBSAMPLE_SIZE, random_state=SEED)
-
 feature_vocabs = {}
 for feat in SELECT_FEATURES:
     feature_vocabs[feat] = int(merged_sorted[feat].max()) + 1
 feature_vocabs["video_id_for_hist"] = feature_vocabs["video_id"]
+if len(merged_sorted) > SUBSAMPLE_SIZE:
+    merged_sorted = merged_sorted.sample(n=SUBSAMPLE_SIZE, random_state=SEED)
+
+
 
 labels = torch.FloatTensor(merged_sorted["is_click"].values)
 feature_tensors = {}
@@ -326,7 +327,7 @@ class DINAttention(nn.Module):
         # ── MLP：4D → hidden[0] → hidden[1] → 1 ──
         layers = []
         for units in hidden_units:
-            layers.extend([nn.Linear(input_dim, units), nn.PReLU(units)])
+            layers.extend([nn.Linear(input_dim, units), nn.ReLU()])
             input_dim = units
         layers.append(nn.Linear(input_dim, 1))
         self.mlp = nn.Sequential(*layers)
@@ -424,7 +425,7 @@ class DIN(nn.Module):
             dnn_layers.extend([
                 nn.Linear(dnn_input_dim, units),
                 nn.BatchNorm1d(units),
-                nn.PReLU(),
+                nn.PReLU(units),
                 nn.Dropout(dropout)
             ])
             dnn_input_dim = units
